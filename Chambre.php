@@ -113,16 +113,14 @@ class Chambre{
     
   //cette fonction est faite pr indique que toutes les chambre sont réserver 
   // (!) est utilise pr designer le contraire ici empty signifie vide 
-    public function estResserve(){
-        return !empty($this->reservations);
-    } 
+
 
     
    
      //afin d'afficher ce que l'on souhaite afficher 
     public function __toString() {
 
-        return "La chambre ". $this->nmChambre . " au prix de " . $this->prix . ' euros ' . 'est équipé de ' .$this->nbLit. ' lits' . ' la wifi est ' .$this->wifi. ' '. count ($this-> reservations) ;
+        return "La chambre ".$reservation->getChambre()->getNumChambre(). " au prix de " . $this->prix . ' euros ' . 'est équipé de ' .$this->nbLit. ' lits' . ' la wifi est ' .$this->wifi. ' '. count ($this-> reservations) ;
 
     }
 

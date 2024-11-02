@@ -94,21 +94,54 @@ class Client{
     //Cette fonction est crée afin d'afficher les réservations qui ont été faites
     /*on parcours les reservation du tableau de reservation a l'aide d'un foreach 
     et on affiche ce que comporte une réservation */
-    public function afficherReservation(){
+//     public function afficherReservations(){
 
-        foreach ($this->reservations as $reservation){
-            echo $reservation->getClient() . ' (' . $reservation->getNumeroReservation() . ') : ' . $reservation->getDateDebut() . " " . $reservation->getDateFin() . "" . $reservation->chambre->getReservation().' €<br>';
+//         foreach ($this->reservations as $reservation){
+//             echo $reservation->getClient()->getPrenom() . ' ' .$reservation->getClient()->getNom() .' - Chambre : '.$reservation->getChambre()->getNmChambre() . ' - Numéro de réservation : ' . $reservation->getNumeroReservation() . ' - Date du séjour: '
+//             . $reservation->getDateDebut() . ' - ' . $reservation->getDateFin().  '<br>'."<br>" ;
+//     }
+// }
+
+
+
+public function afficherReservations()
+    {
+ 
+       
+ 
+        if (count($this->reservations) >= 1)
+        {
+          
+            $totalPrix = 0;                             //initialisation du prix 
+ 
+            foreach ($this->reservations as $reservation)
+            {
+                $chambre = $reservation->getChambre();
+                $wifi = $chambre->getWifi() ? "Oui" : "Non"; //ici le lien avec le boolean est fais a la place de ture false
+                $totalPrix += $chambre->getPrix();
+                $result = "<b>Hôtel : " . $reservation->getChambre()->getHotel() . "</b> - Chambre " . $chambre->getNmChambre() . " (" . $chambre->getPrix() . "€ - Wifi : " . $wifi . ") - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "</br>";
+            //balise b pr ecrire en gras
+            }
+        $result .= "<h2>Réservations de $this</h2>" .'<div>' . count($this->reservations) . " RESERVATIONS</div>
+        <p> Total : $totalPrix €</p>
+        ";
+      
         }
-    }
+        else
+        {
+            $result .= "Aucune réservation !";
+        }
 
+        return $result;
+    }
    
 
-    // methode magique appeler automatiquement jamais faire echo de __tostring
+    // Méthode magique appeler automatiquement jamais faire echo de __tostring
     public function __toString(): string {
-        // Accède au numéro de la première chambre dans la première réservation (si disponible)
-        $nmChambre = $this->reservations[0]->getChambre()->getNmChambre(); 
+    // Accède au numéro de la première chambre dans la première réservation (si disponible)
+        // $nmChambre = $this->reservations[0]->getChambre()->getNmChambre(); 
         
-        return $this->nom . ' ' . $this->prenom . ' - Chambre: ' . $nmChambre . '' . ' ' . "- Numéro de téléphone : ". $this->numeroTelephone . ' - Adresse e-mail : ' . $this->adresseMail;
+        return $this->nom;
     }
 }
 

@@ -15,10 +15,11 @@ class Reservation{
         $this->dateDebut = new DateTime($dateDebut);                // Définit la date de début
         $this->dateFin = new DateTime($dateFin); // Définit la date de fin   
         $this->chambre = $chambre;
-                   
+        // ceci permet d'ajouter automatiquement la réservation à l’hôtel auquel la chambre appartient dès que la réservation est créée
+        //j'ai accès à la classe chambre grace à la variable $chambre . Donc j'ai accès à ses methodes publiques                       
         $client -> ajouterReservation($this);
-        $chambre -> ajouterReservation($this); 
-        //j'ai accès à la classe chambre grace à la variable $chambre . Donc j'ai accès à ses methodes bliques                                           
+        $chambre -> getHotel() -> ajouterReservation($this); 
+                                
     }   
     //  pour obtenir le client
     public function getclient() {
@@ -82,13 +83,13 @@ class Reservation{
     }
     
 
-    // Afin d'afficher ce que l'on souhaite afficher 
+// La méthode magique nous permet d'afficher le nom de l'hotel, le client, le numéro de réservation, la date du début de séjour et la date de fin ainsi que le nombre de réservation 
     public function __toString(): string {
-
+// Pr acceder nomhotel j'appelle chambre ensuite nomhotel 
         return "Réservation de l'hotel ". ' ' . $this->chambre->getHotel()->getNomHotel(). '<br>' ."$this->client".' '."<br> Numéro de réservation :
         ".' '.  $this->numeroReservation . '<br> Date séjour: ' . $this->getDateDebut() . ' au  '
-         . $this ->getDateDebut().' <br>';
-        // Pr acceder nomhotel j'appelle chambre ensuite nomhotel 
+         . $this ->getDateFin().' <br>';
+    
     }
 
 
