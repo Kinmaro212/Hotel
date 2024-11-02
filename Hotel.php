@@ -52,7 +52,7 @@ class Hotel{
 // cette fonction sert a acceder a la valeur d' un attribut de mon objet instancier
     public function getCodePostal(): string {
 
-        return $this->codepostal;
+        return $this->codePostal;
 
     }
 
@@ -66,7 +66,7 @@ class Hotel{
 // cette fonction sert a acceder a la valeur d' un attribut de mon objet instancier
     public function getVille(): string {
 
-        return $this->Ville;
+        return $this->ville;
 
     }
 
@@ -118,9 +118,10 @@ class Hotel{
     // Affiche les réservations de cet hôtel
     public function afficherReservations()
     {
-        $totalReservations = count($this->reservations);
+        // $totalReservations = count($this->reservations);
  
-       
+        $totalReservations = 3;
+
  
         if ($totalReservations >= 1)
         {
@@ -135,16 +136,15 @@ class Hotel{
                 $result = "<b>Hôtel : " . $reservation->getChambre()->getHotel() . "</b> - Chambre " . $chambre->getNmChambre() . " (" . $chambre->getPrix() . "€ - Wifi : " . $wifi . ") - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "</br>";
             //balise b pr ecrire en gras
             }
-        $result .= "<h2>Réservations de $this</h2>" .'<div>' . $totalReservations . " RESERVATIONS</div>
-        <p> Total : $totalPrix €</p>
-        ";
+
       
         }
         else
         {
             $result= "Aucune réservation !";
         }
-
+               $result = "<h2>Réservations de $this</h2>" .'<div>' . $totalReservations . " RESERVATIONS</div>
+        <p> Total : $totalPrix €</p>";
         return $result;
     
     }

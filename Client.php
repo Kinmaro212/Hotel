@@ -14,7 +14,7 @@ class Client{
         $this->nom = $nom;                                                // Définit le nom du client
         $this->prenom = $prenom;                                          // Définit le prénom du client
         $this->numeroTelephone = $numeroTelephone;                        // Définit la date de naissance
-        $this->adresseMail = $adresseMail;                                // Définit le code postal de la ville                    
+        $this->adresseMail = $adresseMail;                                // Définit le code postal de la ville              
         $this->reservations = [];  
     }                     
        
@@ -74,16 +74,6 @@ class Client{
 
     }
 
-    public function getNmChambre() {
-        return $this->nmchambre;
-    }
-
-    //  pour définir le code postale de la ville
-    public function setNmChambre(string $nmchambre) {
-
-         $this->nmchambre = $nmchambre;
-    
-    }
 
     // si le tableau de reservation n'etais pas vide, tu retourne que c'est réserver sinon pas réserver
     //Cette fonction sert a ajouter chaque nouvelle reservation au tableeau de reservation deja existante 
@@ -97,7 +87,7 @@ class Client{
 //     public function afficherReservations(){
 
 //         foreach ($this->reservations as $reservation){
-//             echo $reservation->getClient()->getPrenom() . ' ' .$reservation->getClient()->getNom() .' - Chambre : '.$reservation->getChambre()->getNmChambre() . ' - Numéro de réservation : ' . $reservation->getNumeroReservation() . ' - Date du séjour: '
+//             echo $reservation->getClient()->getPrenom() . ' ' .$reservation->getClient()->getNom() .' - Chambre : '.$reservation->getChambre()->getnumChambre() . ' - Numéro de réservation : ' . $reservation->getNumeroReservation() . ' - Date du séjour: '
 //             . $reservation->getDateDebut() . ' - ' . $reservation->getDateFin().  '<br>'."<br>" ;
 //     }
 // }
@@ -119,8 +109,8 @@ public function afficherReservations()
                 $chambre = $reservation->getChambre();
                 $wifi = $chambre->getWifi() ? "Oui" : "Non"; //ici le lien avec le boolean est fais a la place de ture false
                 $totalPrix += $chambre->getPrix();
-                
-                $result = "<b>Hôtel : " . $reservation->getChambre()->getHotel() . "</b> - Chambre " . $chambre->getNmChambre() . " (" . $chambre->getPrix() . "€ - Wifi : " . $wifi . ") - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "</br>";
+
+                $result = "<b>Hôtel : " . $reservation->getChambre()->getHotel() . "</b> - Chambre " . $chambre->getnmChambre() . " (" . $chambre->getPrix() . "€ - Wifi : " . $wifi . ") - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "</br>";
             //balise b pr ecrire en gras
             }
         $result .= "<h2>Réservations de $this</h2>" .'<div>' . count($this->reservations) . " RESERVATIONS</div>
@@ -130,7 +120,7 @@ public function afficherReservations()
         }
         else
         {
-            $result .= "Aucune réservation !";
+            $result = "Aucune réservation !";
         }
 
         return $result;
@@ -140,7 +130,7 @@ public function afficherReservations()
     // Méthode magique appeler automatiquement jamais faire echo de __tostring
     public function __toString(): string {
     // Accède au numéro de la première chambre dans la première réservation (si disponible)
-        // $nmChambre = $this->reservations[0]->getChambre()->getNmChambre(); 
+        // $numChambre = $this->reservations[0]->getChambre()->getnumChambre(); 
         
         return $this->nom;
     }

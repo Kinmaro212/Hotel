@@ -22,6 +22,7 @@ class Chambre{
         $this ->disponibilite = $disponibilite;                         // Définit l'option wifi dans la chambre
         $this->reservations = [];  
         $hotel -> ajouterChambre($this);
+
   
     }                    
       
@@ -118,10 +119,10 @@ class Chambre{
     
    
      //afin d'afficher ce que l'on souhaite afficher 
-    public function __toString() {
+    // public function __toString() {
 
-        return "La chambre ".$reservation->getChambre()->getNumChambre(). " au prix de " . $this->prix . ' euros ' . 'est équipé de ' .$this->nbLit. ' lits' . ' la wifi est ' .$this->wifi. ' '. count ($this-> reservations) ;
+    //     return "La chambre ". ($this->reservations) ->getChambre()->getNumChambre(). " au prix de " . $this->prix . ' euros ' . 'est équipé de ' .$this->nbLit. ' lits' . ' la wifi est ' .$this->wifi. ' '. count ($this-> reservations) ;
 
-    }
+    // }
 
 }
