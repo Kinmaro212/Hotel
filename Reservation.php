@@ -82,6 +82,14 @@ class Reservation{
 
     }
     
+     // Méthode pour calculer le nombre de jours de la réservation
+     public function calculerNombreJours() {
+        // On utilise la méthode diff de DateTime pour calculer la différence entre les deux dates
+        $interval = $this->dateDebut->diff($this->dateFin);
+        // On retourne le nombre de jours en utilisant la propriété days de l'objet DateInterval
+        // $interval->days : L'objet DateInterval possède une propriété days qui contient le nombre total de jours entre les deux dates.
+        return $interval->days;
+    }
 
 // La méthode magique nous permet d'afficher le nom de l'hotel, le client, le numéro de réservation, la date du début de séjour et la date de fin ainsi que le nombre de réservation 
     public function __toString(): string {

@@ -107,8 +107,8 @@ class Hotel{
         $nbChambresReservees = count($this->reservations);
 
  
-        $result = "Nombre de Chambres : $nbChambres</br>" ;
-        "Nombre de Chambres réservées :". $nbChambresReservees."</br>";
+        $result = "Nombre de Chambres : $nbChambres</br>".
+        "Nombre de Chambres réservées :". $nbChambresReservees."</br>".
         "Nombre de Chambres disponibles : " . ($nbChambres - $nbChambresReservees) . "</p>";
  
  
