@@ -41,7 +41,7 @@ class Hotel{
     
         }
     
-// Cela permet de modifier  la valeur d' un attribut de mon objet instancier et uniquement cela
+// Cela permet de modifier  la valeur d' un attribut de mon objet instancier 
         public function setAdresse(string $adresse) {
     
             $this->adresse = $adresse;
@@ -56,7 +56,7 @@ class Hotel{
 
     }
 
-// cette fonction sert a acceder a la valeur d' un attribut de mon objet instanciere hotel de la class hotel 
+// cette fonction sert a modifier a la valeur d' un attribut de mon objet instanciere hotel de la class hotel 
     public function setCodePostal(string $codePostal) {
 
         $this->codePostal = $codePostal;
@@ -70,18 +70,20 @@ class Hotel{
 
     }
 
-//  pour définir le nom de la ville
+//  pour modifier la valeur d'un attribut de mon objet instancier ville
     public function setVille(string $ville) {
 
         $this->ville = $ville;
 
     }
-
+  //   pour modifier la valeur d'un attribut de mon objet instancier Réservations
     public function getReservations(){
+
         return $this->reservations;
+
     }
 
-//Ajouter chambre va me servir a ajouter une chambre dans mon tableau de chambres et donc push les chambre dans ce tableau qui appartient a l'hotel en question
+//Cela va me servir a ajouter une chambre dans mon tableau de chambres et donc push les chambre dans ce tableau qui appartient Hotel
     public function ajouterChambre(Chambre $chambre ){
 
         $this->chambres[] =  $chambre;
@@ -91,31 +93,33 @@ class Hotel{
 
 //Cette fonction va permettre de push les nouvelle reservation dans notre tableau de réservation
      public function ajouterReservation(Reservation $reservation) {
+
         $this->reservations[] = $reservation;
+
     }
 
-//Cette fonction va permettre de compter le nombre de réservations 
-    public function compterReservations() {
-        return count($this->reservations);
-    }
 
-    public function chambresDisponibles() {
-     // Compte les chambre disponible
-        $chambresDisponibles = count($this->chambres) - count($this->reservations);
-        return  $chambresDisponibles;
-    
-    }
-       
+    // Compte les chambre disponible
+
+    /* Fonction permet d'afficher les informations de l'Hotel ainsi que le nombre de chambre réservées et disponibles
+    ainsi sans crée de fonction supplémentaire pr définir une variable égale au résultat de la soustraction on introduit 
+    le calcul directement dans cette fonction*/  
+
     public function afficherInformations(){
+
         $nbChambres = count($this->chambres);
+
         $nbChambresReservees = count($this->reservations);
 
  
         $result = $this->__toString()."Nombre de Chambres : $nbChambres</br>".
+    //j'ai appeler le __tostring au lieu de tout retaper ici 
         "Nombre de Chambres réservées :". $nbChambresReservees."</br>".
+
         "Nombre de Chambres disponibles : " . ($nbChambres - $nbChambresReservees) . "</p>";
+        
         return $result;
-        //j'ai appeler le __tostring au lieu de tout retaper ici 
+        
     }
 
  
@@ -128,7 +132,7 @@ class Hotel{
         if ($totalReservations >= 1)
         {
           
-            $totalPrix = 0;                             //initialisation du prix 
+            $totalPrix = 0;                                                     //initialisation du prix 
             $result.= "<div>"."$totalReservations"." RESERVATIONS" ."</div>";
             foreach ($this->reservations as $reservation)
             {
@@ -138,9 +142,9 @@ class Hotel{
             //balise b pr ecrire en gras
             }
 
-      
         }
         else
+
         {
             $result.= "<div>Aucune réservation !</div>";
         }
@@ -194,7 +198,7 @@ class Hotel{
         // <!-- Cellule pour le prix de la chambre avec le symbole € -->
         //  <!-- Cellule pour afficher si le Wi-Fi est disponible (OUI ou NON) -->
         //  <!-- Cellule pour afficher l'état de la chambre (Disponible ou Réservée) -->
-            $result .= 
+    $result .= 
     "<tr> 
     <td><b>Chambre " . $chambre->getNmChambre() . "</b></td>
     <td>" . $chambre->getPrix() . "€</td> 
@@ -204,7 +208,7 @@ class Hotel{
         }
     
         // Termine le corps et le tableau HTML
-        $result .= "
+    $result .= "
     </tbody>
     </table>" ;
     

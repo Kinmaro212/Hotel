@@ -108,16 +108,16 @@ public function afficherReservations()
                 }
 
                 $chambre = $reservation->getChambre();
-                $wifi = $chambre->getWifi() ? "Oui" : "Non"; //ici le lien avec le boolean est fais a la place de ture false
+                $wifi = $chambre->getWifi() ? "Oui" : "Non"; //ici le lien avec le boolean est fait a la place de true et false
                 $totalPrix = $chambre->getPrix() * $nbjours;
-                $result.="Hotel :" . $chambre->getHotel()->getNomHotel() . " **** ". $chambre->getHotel()->getVille() .  " /Chambre : " . $chambre->getNmChambre() . " lits - ". $chambre->getPrix() . " - Wifi : ". $wifi . ") du ".$reservation->getDateDebut() . " au " . $reservation->getDateFin(). "<br>";
+                $result.="Hotel :" . $chambre->getHotel()->getNomHotel() . " **** ". $chambre->getHotel()->getVille() .  " / Chambre : " . $chambre->getNmChambre() . " lits - ". $chambre->getPrix() . " - Wifi : ". $wifi . ") du ".$reservation->getDateDebut() . " au " . $reservation->getDateFin(). "<br>";
             }
         $result .= "<p> Total : $totalPrix €</p>";
       
         }
         else
         {
-            $result = "Aucune réservation !";
+            $result = "Aucune réservation au nom de ".$this-> prenom ."dans notre établissement !";
         }
 
         return $result;
