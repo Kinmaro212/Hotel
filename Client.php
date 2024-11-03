@@ -17,7 +17,7 @@ class Client{
         $this->adresseMail = $adresseMail;                                // Définit le code postal de la ville              
         $this->reservations = [];  
     }                     
-        
+    
     //  pour obtenir le nom du client
     public function getNom() {
 

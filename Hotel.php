@@ -122,13 +122,13 @@ class Hotel{
     public function afficherReservations()
     {
         $totalReservations = count($this->reservations);
-        $result = "<h2>Réservations de l'hôtel ".$this->nomHotel."****" .$this->ville.'</h2><div>' ;
+        $result = "<h2>Réservations de l'hôtel ".$this->nomHotel."****" .$this->ville.'</h2>' ;
  
         if ($totalReservations >= 1)
         {
           
             $totalPrix = 0;                             //initialisation du prix 
-            $result.=$totalReservations . " RESERVATIONS</div>";
+            $result.= "<div>"."$totalReservations"." RESERVATIONS" ."</div>";
             foreach ($this->reservations as $reservation)
             {
                 $client = $reservation->getclient();
@@ -149,45 +149,62 @@ class Hotel{
  
     public function afficherStatut() 
     {
-        // Trie les chambres en utilisant une méthode de comparaison personnalisée (TriParChambre)
-        // usort($this->chambres, array($this, "TriParChambre"));
+
     
         // Initialise une chaîne HTML pour afficher le statut des chambres
+
+        // <!-- Début du tableau pour afficher les informations des chambres -->
+        // <!-- En-tête du tableau -->
+        // <!-- Ligne de l'en-tête du tableau -->
+        // -- Cellule d'en-tête pour le numéro de la chambre -->
+        // <!-- Cellule d'en-tête pour le prix de la chambre -->
+        // <!-- Cellule d'en-tête pour indiquer la disponibilité du Wi-Fi -->
+        // <!-- Cellule d'en-tête pour l'état de disponibilité de la chambre -->
+        // <!-- Corps du tableau, où les informations des chambres seront ajoutées -->"
+
+
         $result = "<h2>Statut des chambres de". $this->getNomHotel()." **** ". $this->getVille() . "</h2>
-    <table> <!-- Début du tableau pour afficher les informations des chambres -->
-    <thead> <!-- En-tête du tableau -->
-    <tr> <!-- Ligne de l'en-tête du tableau -->
-    <th>CHAMBRE</th> <!-- Cellule d'en-tête pour le numéro de la chambre -->
-    <th>PRIX</th> <!-- Cellule d'en-tête pour le prix de la chambre -->
-    <th>WIFI</th> <!-- Cellule d'en-tête pour indiquer la disponibilité du Wi-Fi -->
-    <th>DISPONIBILITÉ</th> <!-- Cellule d'en-tête pour l'état de disponibilité de la chambre -->
-    </tr>
-    </thead>
-    <tbody> <!-- Corps du tableau, où les informations des chambres seront ajoutées -->";
+            <table>
+            <thead>
+            <tr>
+            <th>CHAMBRE</th> 
+            <th>PRIX</th>
+            <th>WIFI</th>
+            <th>DISPONIBILITÉ</th>
+            </tr>
+            </thead>
+            <tbody>";
     
         // Boucle à travers chaque chambre pour en afficher les informations dans le tableau
         foreach ($this->chambres as $chambre)
+
         {
-            // Vérifie si la chambre dispose de Wi-Fi, et affecte "OUI" ou "NON" en conséquence
+
+        // Vérifie si la chambre dispose de Wi-Fi, et affecte "OUI" ou "NON" en conséquence
             $wifi = $chambre->getWifi() ? '<div>OUI</div>' : '<div>NON</div>';
     
-            // Vérifie si la chambre est disponible, et affecte "Disponible" ou "Réservée" en conséquence
+        // Vérifie si la chambre est disponible, et affecte "Disponible" ou "Réservée" en conséquence
             $disponible = $chambre->getDisponibilite() ? '<div>Disponible</div>' : '<div>Réservée</div>';
     
-            // Ajoute une ligne au tableau pour la chambre actuelle
-            $result .= "
-    <tr> <!-- Nouvelle ligne pour afficher les informations de la chambre -->
-    <td><b>Chambre " . $chambre->getNmChambre() . "</b></td> <!-- Cellule pour le numéro de la chambre -->
-    <td>" . $chambre->getPrix() . "€</td> <!-- Cellule pour le prix de la chambre avec le symbole € -->
-    <td>$wifi</td> <!-- Cellule pour afficher si le Wi-Fi est disponible (OUI ou NON) -->
-    <td>$disponible</td> <!-- Cellule pour afficher l'état de la chambre (Disponible ou Réservée) -->
+        // Ajoute une ligne au tableau pour la chambre actuelle
+        // <!-- Nouvelle ligne pour afficher les informations de la chambre -->
+        //  <!-- Cellule pour le numéro de la chambre -->
+        // <!-- Cellule pour le prix de la chambre avec le symbole € -->
+        //  <!-- Cellule pour afficher si le Wi-Fi est disponible (OUI ou NON) -->
+        //  <!-- Cellule pour afficher l'état de la chambre (Disponible ou Réservée) -->
+            $result .= 
+    "<tr> 
+    <td><b>Chambre " . $chambre->getNmChambre() . "</b></td>
+    <td>" . $chambre->getPrix() . "€</td> 
+    <td>$wifi</td>
+    <td>$disponible</td>
     </tr>";
         }
     
         // Termine le corps et le tableau HTML
         $result .= "
-    </tbody> <!-- Fin du corps du tableau -->
-    </table> <!-- Fin du tableau -->";
+    </tbody>
+    </table>" ;
     
         // Retourne le code HTML complet pour l'affichage
         return $result;
@@ -205,19 +222,3 @@ class Hotel{
         // "Réservations de l'hotel "."$this->nomHotel **** $this->ville".'<br>' . " Réservations".'  '. count($this->reservations) ;
     }
 }    
-
-
-
-
-
-
-/*cette fonction va me servir a afficher les chambre avec leur caracteristique
-     ainsi que le nombre total de chambre au sein de l'hotel 
-     On fais un foreach pr lire chaque chambre du tableau de chambres 
-     et on affiche les caracteristique de chaque chambre*/
-    // public function afficherChambres() {
-    //     foreach($this->chambres as $chambre) {
-    //         echo $chambre->getNmChambre() . ' (' . $chambre->getNbLit() . ') : ' . $chambre->getPrix() . " " . $chambre->getWifi() . "" . $chambre->getDisponibilite().' €<br>';
-
-    //     }
-    // }

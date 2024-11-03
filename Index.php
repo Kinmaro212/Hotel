@@ -74,12 +74,12 @@ $clientReservation2 = new Reservation($client1, $reservation2, "213213", "2021-0
 $clientReservation3 = new Reservation($client2, $reservation3, "214214", "2021-01-01", $ch10Hilton);
 */
 
+
 echo $hotel1->afficherInformations();
 echo $hotel1->afficherReservations();
 echo $hotel2->afficherReservations();
 echo $client1->afficherReservations();
 // Afficher les réservations d'un hôtel
-
 echo $hotel1->afficherStatut();
 
 
