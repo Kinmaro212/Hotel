@@ -64,31 +64,36 @@ $ch10Regent  = new Chambre( "10","2", "300", False, True, $hotel2);
 
 //chambre collection de reservation
 $reservation = new Reservation($client1, "212212", "2021-03-11", "2021-03-15", $ch3Hilton);
-$reservation2 = new Reservation($client1, "213213", "2021-04-01", "2021-04-01", $ch4Hilton);
+$reservation2 = new Reservation($client1, "213213", "2021-04-01", "2021-04-17", $ch4Hilton);
 $reservation3 = new Reservation($client2, "214214", "2021-01-01", "2021-01-01", $ch10Hilton);
 
 // client collection de reservation
-
+/*
 $clientReservation1 = new Reservation($client1, $reservation, "212212", "2021-03-11", $ch3Hilton);
 $clientReservation2 = new Reservation($client1, $reservation2, "213213", "2021-04-01", $ch4Hilton);
-$clientReservation3 = new Reservation($client2, $reservation3, "214214", "2021-01-01", $ch10Hilton). '<br>';
-
-
-
+$clientReservation3 = new Reservation($client2, $reservation3, "214214", "2021-01-01", $ch10Hilton);
+*/
 
 echo $hotel1->afficherInformations();
-echo $hotel2->afficherInformations();
-// Afficher les réservations d'un hôtel
 echo $hotel1->afficherReservations();
 echo $hotel2->afficherReservations();
+echo $client1->afficherReservations();
+// Afficher les réservations d'un hôtel
+
+echo $hotel1->afficherStatut();
+
+
+
+//echo $hotel2->afficherStatut();
+
 
 // Afficher les réservations d'un client
-echo $client1->afficherReservations();
-echo $client2->afficherReservations();
+//echo $client1->afficherReservations();
+//echo $client2->afficherReservations();
 
 // Afficher le statut des chambres d'un hôtel
-echo $hotel1->afficherStatut();
-echo $hotel2->afficherStatut();
+
+
 
 // Micka MURMANN 
 // Virgile GIBELLO

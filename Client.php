@@ -67,6 +67,10 @@ class Client{
 
     }
 
+    public function getReservations(){
+        return $this->reservations;
+    }
+
     //  pour définir le code postale de la ville
     public function setAdresseMail(string $adresseMail) {
 
@@ -96,26 +100,29 @@ class Client{
 
 public function afficherReservations()
     {
- 
        
  
+        // ce count n'a aucun rapport avec celui de l'hotel
         if (count($this->reservations) >= 1)
         {
           
+            $result = "<h2>Réservations de $this</h2>" .'<div>' . count($this->reservations) . " RESERVATIONS</div>";
             $totalPrix = 0;                             //initialisation du prix 
  
             foreach ($this->reservations as $reservation)
             {
+                $nbjours = $reservation->calculerNombreJours();
+                if($nbjours === 0)
+                {
+                    $nbjours=1;
+                }
+
                 $chambre = $reservation->getChambre();
                 $wifi = $chambre->getWifi() ? "Oui" : "Non"; //ici le lien avec le boolean est fais a la place de ture false
-                $totalPrix += $chambre->getPrix();
-
-                $result = "<b>Hôtel : " . $reservation->getChambre()->getHotel() . "</b> - Chambre " . $chambre->getnmChambre() . " (" . $chambre->getPrix() . "€ - Wifi : " . $wifi . ") - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "</br>";
-            //balise b pr ecrire en gras
+                $totalPrix = $chambre->getPrix() * $nbjours;
+                $result.="Hotel :" . $chambre->getHotel()->getNomHotel() . " **** ". $chambre->getHotel()->getVille() .  " /Chambre : " . $chambre->getNmChambre() . " lits - ". $chambre->getPrix() . " - Wifi : ". $wifi . ") du ".$reservation->getDateDebut() . " au " . $reservation->getDateFin(). "<br>";
             }
-        $result .= "<h2>Réservations de $this</h2>" .'<div>' . count($this->reservations) . " RESERVATIONS</div>
-        <p> Total : $totalPrix €</p>
-        ";
+        $result .= "<p> Total : $totalPrix €</p>";
       
         }
         else
@@ -132,7 +139,7 @@ public function afficherReservations()
     // Accède au numéro de la première chambre dans la première réservation (si disponible)
         // $numChambre = $this->reservations[0]->getChambre()->getnumChambre(); 
         
-        return $this->nom;
+        return $this->prenom." ".$this->nom;
     }
 }
 

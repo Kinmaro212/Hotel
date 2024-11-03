@@ -77,6 +77,10 @@ class Hotel{
 
     }
 
+    public function getReservations(){
+        return $this->reservations;
+    }
+
 //Ajouter chambre va me servir a ajouter une chambre dans mon tableau de chambres et donc push les chambre dans ce tableau qui appartient a l'hotel en question
     public function ajouterChambre(Chambre $chambre ){
 
@@ -107,33 +111,29 @@ class Hotel{
         $nbChambresReservees = count($this->reservations);
 
  
-        $result = "Nombre de Chambres : $nbChambres</br>".
+        $result = $this->__toString()."Nombre de Chambres : $nbChambres</br>".
         "Nombre de Chambres réservées :". $nbChambresReservees."</br>".
         "Nombre de Chambres disponibles : " . ($nbChambres - $nbChambresReservees) . "</p>";
- 
- 
         return $result;
     }
+
  
     // Affiche les réservations de cet hôtel
     public function afficherReservations()
     {
-        // $totalReservations = count($this->reservations);
- 
-        $totalReservations = 3;
-
+        $totalReservations = count($this->reservations);
+        $result = "<h2>Réservations de l'hôtel ".$this->nomHotel."****" .$this->ville.'</h2><div>' ;
  
         if ($totalReservations >= 1)
         {
           
             $totalPrix = 0;                             //initialisation du prix 
- 
+            $result.=$totalReservations . " RESERVATIONS</div>";
             foreach ($this->reservations as $reservation)
             {
+                $client = $reservation->getclient();
                 $chambre = $reservation->getChambre();
-                $wifi = $chambre->getWifi() ? "Oui" : "Non";
-                $totalPrix += $chambre->getPrix();
-                $result = "<b>Hôtel : " . $reservation->getChambre()->getHotel() . "</b> - Chambre " . $chambre->getNmChambre() . " (" . $chambre->getPrix() . "€ - Wifi : " . $wifi . ") - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "</br>";
+                $result .= $client . " - Chambre " . $chambre->getNmChambre() . " - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "<br>";
             //balise b pr ecrire en gras
             }
 
@@ -141,10 +141,8 @@ class Hotel{
         }
         else
         {
-            $result= "Aucune réservation !";
+            $result.= "<div>Aucune réservation !</div>";
         }
-               $result = "<h2>Réservations de $this</h2>" .'<div>' . $totalReservations . " RESERVATIONS</div>
-        <p> Total : $totalPrix €</p>";
         return $result;
     
     }
@@ -155,14 +153,14 @@ class Hotel{
         // usort($this->chambres, array($this, "TriParChambre"));
     
         // Initialise une chaîne HTML pour afficher le statut des chambres
-        $result = "<h2>Statut des chambres de $this</h2>
+        $result = "<h2>Statut des chambres de". $this->getNomHotel()." **** ". $this->getVille() . "</h2>
     <table> <!-- Début du tableau pour afficher les informations des chambres -->
     <thead> <!-- En-tête du tableau -->
     <tr> <!-- Ligne de l'en-tête du tableau -->
     <th>CHAMBRE</th> <!-- Cellule d'en-tête pour le numéro de la chambre -->
     <th>PRIX</th> <!-- Cellule d'en-tête pour le prix de la chambre -->
     <th>WIFI</th> <!-- Cellule d'en-tête pour indiquer la disponibilité du Wi-Fi -->
-    <th>DISPONIBILITE</th> <!-- Cellule d'en-tête pour l'état de disponibilité de la chambre -->
+    <th>DISPONIBILITÉ</th> <!-- Cellule d'en-tête pour l'état de disponibilité de la chambre -->
     </tr>
     </thead>
     <tbody> <!-- Corps du tableau, où les informations des chambres seront ajoutées -->";
@@ -200,9 +198,7 @@ class Hotel{
     
     // La méthode magique nous permet d'afficher le nom de l'hotel, la ville l'adresse, le nombre de chambre ainsi que le nombre de réservation 
     public function __toString(): string {
-        return  "$this->nomHotel**** $this->ville<br>";
-        
-        // . $this->adresse. ' ' .$this ->codePostal. ' ' .$this ->ville."<br>"
+        return  "<b>$this->nomHotel**** $this->ville<br></b>". $this->adresse. ' ' .$this ->codePostal. ' ' .$this ->ville."<br>";
 
         // .'Total des chambres : '. count($this->chambres) ."<br> Chambre Réservées : ".count($this->reservations). "<br> Chambre disponibles : ".$this ->chambresDisponibles() ."<br>"."<br>".
           

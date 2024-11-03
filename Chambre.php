@@ -2,7 +2,6 @@
 
 class Chambre{
     private string $nmChambre;                          // Numéro de chambre
-    // private int $nbChambre;                          // Nombre de chambre 
     private int $nbLit ;                                // Nombre de Lit 
     private float $prix ;                               // Prix de la chambre
     private bool $wifi;                                 // Option Wifi
