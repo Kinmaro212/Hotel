@@ -115,6 +115,7 @@ class Hotel{
         "Nombre de Chambres réservées :". $nbChambresReservees."</br>".
         "Nombre de Chambres disponibles : " . ($nbChambres - $nbChambresReservees) . "</p>";
         return $result;
+        //j'ai appeler le __tostring au lieu de tout retaper ici 
     }
 
  
@@ -174,6 +175,7 @@ class Hotel{
             </tr>
             </thead>
             <tbody>";
+        // Je suis obliger de faire un tableau pr avoir ce rendu quand j'aurai fais le CSS
     
         // Boucle à travers chaque chambre pour en afficher les informations dans le tableau
         foreach ($this->chambres as $chambre)

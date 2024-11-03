@@ -85,16 +85,6 @@ class Client{
 
         $this->reservations[] =  $reservation;
     }
-    //Cette fonction est crée afin d'afficher les réservations qui ont été faites
-    /*on parcours les reservation du tableau de reservation a l'aide d'un foreach 
-    et on affiche ce que comporte une réservation */
-//     public function afficherReservations(){
-
-//         foreach ($this->reservations as $reservation){
-//             echo $reservation->getClient()->getPrenom() . ' ' .$reservation->getClient()->getNom() .' - Chambre : '.$reservation->getChambre()->getnumChambre() . ' - Numéro de réservation : ' . $reservation->getNumeroReservation() . ' - Date du séjour: '
-//             . $reservation->getDateDebut() . ' - ' . $reservation->getDateFin().  '<br>'."<br>" ;
-//     }
-// }
 
 
 
