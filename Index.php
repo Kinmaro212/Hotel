@@ -1,12 +1,30 @@
 <?php
 //Require permet de nous assurer que ce qu'on fais est vraiment operationnel c'est le Require qui nous stop avec une erreur
 //on peut egalement utilisé l'include qui lui nous met seulement un warning 
-Include "Chambre.php";
-Include "Client.php";
+include "Chambre.php";
+include "Client.php";
 Include "Hotel.php";
 Include "Reservation.php";
 
+?>
 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/css/uikit.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Hôtel</title>
+</head>
+<body>
+<main>
+  <div class = container>
+
+
+<?php
 
 
 
@@ -61,6 +79,16 @@ echo $hotel1->afficherReservations();
 echo $hotel2->afficherReservations();
 echo $client1->afficherReservations();
 echo $hotel1->afficherStatut();
+
+
+?>
+  </div>
+ </main>
+ <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/js/uikit.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/js/uikit-icons.min.js"></script>
+ 
+</body>
+</html>
 
 
 

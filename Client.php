@@ -96,7 +96,7 @@ public function afficherReservations()
         if (count($this->reservations) >= 1)
         {
           
-            $result = "<h2>Réservations de $this</h2>" .'<div>' . count($this->reservations) . " RESERVATIONS</div>";
+            $result = "<h2>Réservations de $this</h2>" .'<div class = totalreservations><div class=uk-background-primary >' . count($this->reservations) . " RESERVATIONS</div></div>";
             $totalPrix = 0;                             //initialisation du prix 
  
             foreach ($this->reservations as $reservation)
@@ -110,7 +110,8 @@ public function afficherReservations()
                 $chambre = $reservation->getChambre();
                 $wifi = $chambre->getWifi() ? "Oui" : "Non"; //ici le lien avec le boolean est fait a la place de true et false
                 $totalPrix = $chambre->getPrix() * $nbjours;
-                $result.="Hotel :" . $chambre->getHotel()->getNomHotel() . " **** ". $chambre->getHotel()->getVille() .  " / Chambre : " . $chambre->getNmChambre() . " lits - ". $chambre->getPrix() . " - Wifi : ". $wifi . ") du ".$reservation->getDateDebut() . " au " . $reservation->getDateFin(). "<br>";
+                $result.="Hotel :" . $chambre->getHotel()->getNomHotel() . " **** ". $chambre->getHotel()->getVille() .  " / Chambre : " . $chambre->getNmChambre()
+                 . " lits - ". $chambre->getPrix() . " - ( Wifi : ". $wifi . " ) du ".$reservation->getDateDebut() . " au " . $reservation->getDateFin(). "<br>";
             }
         $result .= "<p> Total : $totalPrix €</p>";
       

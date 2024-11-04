@@ -127,18 +127,18 @@ class Hotel{
     public function afficherReservations()
     {
         $totalReservations = count($this->reservations);
-        $result = "<h2>Réservations de l'hôtel ".$this->nomHotel."****" .$this->ville.'</h2>' ;
+        $result = "<h2>Réservations de l'hôtel ".$this->nomHotel." **** " .$this->ville.'</h2>' ;
  
         if ($totalReservations >= 1)
         {
           
             $totalPrix = 0;                                                     //initialisation du prix 
-            $result.= "<div>"."$totalReservations"." RESERVATIONS" ."</div>";
+            $result.= "<div class = totalreservations ><div class=uk-background-primary  >"."$totalReservations"." RESERVATIONS" ."</div></div>";
             foreach ($this->reservations as $reservation)
             {
-                $client = $reservation->getclient();
+                 $client = "<div>".$reservation->getclient();
                 $chambre = $reservation->getChambre();
-                $result .= $client . " - Chambre " . $chambre->getNmChambre() . " - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "<br>";
+                $result .= $client . " - Chambre " . $chambre->getNmChambre() . " - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "<br>"."</div>";
             //balise b pr ecrire en gras
             }
 
@@ -169,7 +169,7 @@ class Hotel{
 
 
         $result = "<h2>Statut des chambres de". $this->getNomHotel()." **** ". $this->getVille() . "</h2>
-            <table>
+            <table class='uk-table'>
             <thead>
             <tr>
             <th>CHAMBRE</th> 
@@ -187,10 +187,10 @@ class Hotel{
         {
 
         // Vérifie si la chambre dispose de Wi-Fi, et affecte "OUI" ou "NON" en conséquence
-            $wifi = $chambre->getWifi() ? '<div>OUI</div>' : '<div>NON</div>';
+            $wifi = $chambre->getWifi() ? '<div class="uk-button uk-button-primary uk-width-1-3">OUI</div>' : '<div class="uk-button uk-button-danger uk-width-1-3">NON</div>';
     
         // Vérifie si la chambre est disponible, et affecte "Disponible" ou "Réservée" en conséquence
-            $disponible = $chambre->getDisponibilite() ? '<div>Disponible</div>' : '<div>Réservée</div>';
+            $disponible = $chambre->getDisponibilite() ? '<div class="uk-button uk-button-primary uk-width-1-3">Disponible</div>' : '<div class="uk-button uk-button-danger uk-width-1-3">Réservée</div>';
     
         // Ajoute une ligne au tableau pour la chambre actuelle
         // <!-- Nouvelle ligne pour afficher les informations de la chambre -->
@@ -221,10 +221,36 @@ class Hotel{
     
     // La méthode magique nous permet d'afficher le nom de l'hotel, la ville l'adresse, le nombre de chambre ainsi que le nombre de réservation 
     public function __toString(): string {
-        return  "<b>$this->nomHotel**** $this->ville<br></b>". $this->adresse. ' ' .$this ->codePostal. ' ' .$this ->ville."<br>";
+        return  "<b>$this->nomHotel **** $this->ville<br></b>". $this->adresse. ' ' .$this ->codePostal. ' ' .$this ->ville."<br>";
+
+
+    }
+}    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // .'Total des chambres : '. count($this->chambres) ."<br> Chambre Réservées : ".count($this->reservations). "<br> Chambre disponibles : ".$this ->chambresDisponibles() ."<br>"."<br>".
           
         // "Réservations de l'hotel "."$this->nomHotel **** $this->ville".'<br>' . " Réservations".'  '. count($this->reservations) ;
-    }
-}    
