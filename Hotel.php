@@ -136,7 +136,7 @@ class Hotel{
             $result.= "<div class = totalreservations ><div class=uk-background-primary  >"."$totalReservations"." RESERVATIONS" ."</div></div>";
             foreach ($this->reservations as $reservation)
             {
-                 $client = "<div>".$reservation->getclient();
+                $client = "<div>".$reservation->getclient();
                 $chambre = $reservation->getChambre();
                 $result .= $client . " - Chambre " . $chambre->getNmChambre() . " - du " . $reservation->getDateDebut() . " au " . $reservation->getDateFin() . "<br>"."</div>";
             //balise b pr ecrire en gras
